@@ -9,3 +9,5 @@ const R = {
   fonts,
   palette,
 };
+
+export default R;
