@@ -1,10 +1,10 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TextInput } from "react-native";
 
 export default SearchScreen = () => {
   return (
     <View style={styles.screenContainer}>
-      <Text>AAAAA</Text>
+      <TextInput />
     </View>
   );
 };
@@ -12,6 +12,5 @@ export default SearchScreen = () => {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    backgroundColor: "orangered",
   },
 });
