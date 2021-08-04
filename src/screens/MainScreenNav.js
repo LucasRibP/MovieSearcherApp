@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
 import SearchScreen from "./search/SearchScreen";
 import R from "res/R";
+import i18n from "i18n-js";
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ const MainScreenNav = () => {
             name="Search"
             component={SearchScreen}
             options={{
+              title: i18n.t("searchScreen.header.title"),
               headerStyle: {
                 backgroundColor: R.colors.primaryColor,
               },

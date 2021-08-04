@@ -4,6 +4,18 @@ import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store/store";
 import MainScreenNav from "./src/screens/MainScreenNav";
+import i18n from "i18n-js";
+import R from "res/R";
+import * as Localization from "expo-localization";
+
+i18n.translations = {
+  en: R.strings["en-US"],
+  pt: R.strings["pt-br"],
+};
+
+i18n.locale = Localization.locale;
+i18n.fallbacks = true;
+i18n.defaultLocale = "en";
 
 export default function App() {
   return (
