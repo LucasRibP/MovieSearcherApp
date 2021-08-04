@@ -19,7 +19,7 @@ const MainScreenNav = () => {
             options={{
               title: i18n.t("searchScreen.header.title"),
               headerStyle: {
-                backgroundColor: R.colors.primaryColor,
+                backgroundColor: R.colors.primary,
               },
             }}
           />

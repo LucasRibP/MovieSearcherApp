@@ -5,8 +5,9 @@ import { Provider } from "react-redux";
 import { store } from "./src/redux/store/store";
 import MainScreenNav from "./src/screens/MainScreenNav";
 import i18n from "i18n-js";
-import R from "res/R";
+import R from "./src/res/R";
 import * as Localization from "expo-localization";
+import { ThemeProvider } from "react-native-elements";
 
 i18n.translations = {
   en: R.strings["en-US"],
@@ -19,11 +20,13 @@ i18n.defaultLocale = "en";
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <View style={styles.root}>
-        <MainScreenNav />
-      </View>
-    </Provider>
+    <ThemeProvider theme={R.palette.baseStyle}>
+      <Provider store={store}>
+        <View style={styles.root}>
+          <MainScreenNav />
+        </View>
+      </Provider>
+    </ThemeProvider>
   );
 }
 

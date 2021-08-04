@@ -1,5 +1,11 @@
+import colors from "./colors";
+
 const palette = {
-  baseStyle: {},
+  baseStyle: {
+    colors: {
+      primary: colors.primary,
+    },
+  },
 };
 
 export default palette;

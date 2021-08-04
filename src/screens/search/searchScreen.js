@@ -1,7 +1,7 @@
 import i18n from "i18n-js";
 import React from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
-import { Input } from "react-native-elements";
+import { Input, Button } from "react-native-elements";
 
 export default SearchScreen = () => {
   return (
@@ -10,6 +10,7 @@ export default SearchScreen = () => {
         placeholder={i18n.t("searchScreen.searchField.hint")}
         containerStyle={styles.inputContainer}
       />
+      <Button title={i18n.t("searchScreen.searchButton.text")} />
     </View>
   );
 };
