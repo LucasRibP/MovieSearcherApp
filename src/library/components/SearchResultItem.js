@@ -1,7 +1,7 @@
 import React from "react";
 import { ListItem, Avatar } from "react-native-elements/dist/list/ListItem";
 
-export default SearchResultItem = ({ posterUrl, title, year }) => {
+export default SearchResultItem = React.memo(({ posterUrl, title, year }) => {
   return (
     <ListItem>
       <Avatar source={posterUrl} />
@@ -9,4 +9,4 @@ export default SearchResultItem = ({ posterUrl, title, year }) => {
       <ListItem.Subtitle>{year}</ListItem.Subtitle>
     </ListItem>
   );
-};
+});

@@ -21,6 +21,7 @@ const MainScreenNav = () => {
               headerStyle: {
                 backgroundColor: R.colors.primary,
               },
+              headerTintColor: R.colors.white,
             }}
           />
         </Stack.Navigator>
