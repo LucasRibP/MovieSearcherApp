@@ -3,6 +3,7 @@ import React from "react";
 import { FlatList } from "react-native";
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import { Input, Button } from "react-native-elements";
+import ResultsList from "./ResultsList";
 
 export default SearchScreen = () => {
   return (
@@ -15,7 +16,9 @@ export default SearchScreen = () => {
         title={i18n.t("searchScreen.searchButton.text")}
         containerStyle={styles.buttonContainer}
       />
-      <FlatList style={styles.searchResultsContainer} />
+      <View style={styles.searchResultsContainer}>
+        <ResultsList results={[]} />
+      </View>
     </View>
   );
 };
