@@ -1,10 +1,11 @@
 import React from "react";
 import { ListItem, Avatar } from "react-native-elements";
+import { StyleSheet } from "react-native";
 
 export default SearchResultItem = React.memo(
   ({ posterUrl, title, year }) => {
     return (
-      <ListItem>
+      <ListItem containerStyle={styles.componentContainer}>
         <Avatar source={{ uri: posterUrl }} />
         <ListItem.Content>
           <ListItem.Title>{title}</ListItem.Title>
@@ -20,3 +21,10 @@ export default SearchResultItem = React.memo(
     return true;
   }
 );
+
+const styles = StyleSheet.create({
+  componentContainer: {
+    borderRadius: 5,
+    marginBottom: 5,
+  },
+});

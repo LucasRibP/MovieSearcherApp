@@ -38,11 +38,23 @@ const styles = StyleSheet.create({
     width: "94%",
   },
   searchResultsContainer: {
-    margin: 5,
+    margin: 10,
   },
 });
 
 const testData = [
+  {
+    Title: "Rickroll",
+    Year: "1987",
+    Poster:
+      "https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2021/02/rickroll-hd-1280x720.jpg",
+  },
+  {
+    Title: "Rickroll",
+    Year: "1987",
+    Poster:
+      "https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2021/02/rickroll-hd-1280x720.jpg",
+  },
   {
     Title: "Rickroll",
     Year: "1987",
