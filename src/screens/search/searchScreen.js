@@ -17,7 +17,7 @@ export default SearchScreen = () => {
         containerStyle={styles.buttonContainer}
       />
       <View style={styles.searchResultsContainer}>
-        <ResultsList results={[]} />
+        <ResultsList results={testData} />
       </View>
     </View>
   );
@@ -41,3 +41,12 @@ const styles = StyleSheet.create({
     margin: 5,
   },
 });
+
+const testData = [
+  {
+    Title: "Rickroll",
+    Year: "1987",
+    Poster:
+      "https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2021/02/rickroll-hd-1280x720.jpg",
+  },
+];

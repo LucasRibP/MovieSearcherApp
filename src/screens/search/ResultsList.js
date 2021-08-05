@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, FlatList } from "react-native";
-import { SearchResultsItem } from "library/components/SearchResultItem";
+import SearchResultsItem from "library/components/SearchResultItem";
 
 export default ResultsList = React.memo(
   ({ results }) => {
