@@ -1,5 +1,5 @@
 import i18n from "i18n-js";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { Input, Button } from "react-native-elements";
 import ResultsList from "./ResultsList";
@@ -12,6 +12,16 @@ import ResultsListMessage from "./ResultsListMessage";
 
 export default SearchScreen = () => {
   const [currentQuery, setCurrentQuery] = useState("");
+  const [nonEmptySearch, setNonEmptySearch] = useState(false);
+
+  useEffect(() => {
+    if (searchQuery.payload != "" && typeof searchQuery !== "undefined") {
+      setNonEmptySearch(true);
+    } else {
+      setNonEmptySearch(false);
+    }
+  }, [searchQuery]);
+
   const searchQuery = useSelector((state) => state.searchQuery.value);
   const dispatch = useDispatch();
 
@@ -19,7 +29,11 @@ export default SearchScreen = () => {
     searchQuery.payload
   );
 
-  const SearchResults = data.Error ? (
+  const SearchResults = !nonEmptySearch ? (
+    <ResultsListMessage
+      message={i18n.t("searchScreen.searchResults.emptySearch")}
+    />
+  ) : data.Error ? (
     <ResultsListMessage message={i18n.t("searchScreen.searchResults.error")} />
   ) : (
     <ResultsList results={data["Search"]} />
@@ -32,9 +46,9 @@ export default SearchScreen = () => {
         containerStyle={styles.inputContainer}
         value={currentQuery}
         onChangeText={(value) => setCurrentQuery(value)}
-        onSubmitEditing={(event) =>
-          dispatch(setSearchQuery(event.nativeEvent.text))
-        }
+        onSubmitEditing={(event) => {
+          dispatch(setSearchQuery(event.nativeEvent.text));
+        }}
       />
       <Button
         title={i18n.t("searchScreen.searchButton.text")}
