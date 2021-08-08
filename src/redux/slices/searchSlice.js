@@ -1,17 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const searchSlice = createSlice({
-  name: "searchResults",
+  name: "searchQuery",
   initialState: {
-    value: {},
+    value: "",
   },
   reducers: {
-    searchForResults: (state, query) => {
-      // Here we will search for the matching movies
+    setSearchQuery: (state, query) => {
+      state.value = query;
     },
   },
 });
 
-export const { searchForResults } = searchSlice.actions;
+export const { setSearchQuery } = searchSlice.actions;
 
 export default searchSlice.reducer;

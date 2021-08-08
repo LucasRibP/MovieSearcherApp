@@ -1,35 +1,49 @@
 import i18n from "i18n-js";
-import React from "react";
-import { FlatList } from "react-native";
-import { View, StyleSheet, Text, TextInput } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Text } from "react-native";
 import { Input, Button } from "react-native-elements";
 import ResultsList from "./ResultsList";
 import { useGetMoviesByNameQuery } from "../../library/networking/omdbAPI";
+import { setSearchQuery } from "../../redux/slices/searchSlice";
+
 import R from "../../res/R";
+import { useDispatch, useSelector } from "react-redux";
+import ResultsListMessage from "./ResultsListMessage";
 
 export default SearchScreen = () => {
-  const { data, error, isLoading } = useGetMoviesByNameQuery("dumbo");
+  const [currentQuery, setCurrentQuery] = useState("");
+  const searchQuery = useSelector((state) => state.searchQuery.value);
+  const dispatch = useDispatch();
+
+  const { data, error, isLoading } = useGetMoviesByNameQuery(
+    searchQuery.payload
+  );
+
+  const SearchResults = data.Error ? (
+    <ResultsListMessage message={i18n.t("searchScreen.searchResults.error")} />
+  ) : (
+    <ResultsList results={data["Search"]} />
+  );
+
   return (
     <View style={styles.screenContainer}>
       <Input
         placeholder={i18n.t("searchScreen.searchField.hint")}
         containerStyle={styles.inputContainer}
+        value={currentQuery}
+        onChangeText={(value) => setCurrentQuery(value)}
+        onSubmitEditing={(event) =>
+          dispatch(setSearchQuery(event.nativeEvent.text))
+        }
       />
       <Button
         title={i18n.t("searchScreen.searchButton.text")}
         containerStyle={styles.buttonContainer}
+        onPress={() => {
+          dispatch(setSearchQuery(currentQuery));
+        }}
       />
-      <View style={styles.searchResultsContainer}>
-        {isLoading ? (
-          <View style={styles.searchResultsLoading}>
-            <Text style={styles.searchResultsLoadingText}>
-              {i18n.t("searchScreen.searchResults.loading")}
-            </Text>
-          </View>
-        ) : (
-          <ResultsList results={data["Search"]} />
-        )}
-      </View>
+      <View style={styles.searchResultsContainer}>{SearchResults}</View>
     </View>
   );
 };
@@ -37,14 +51,6 @@ export default SearchScreen = () => {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-  },
-  searchResultsLoading: {
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100%",
-  },
-  searchResultsLoadingText: {
-    color: R.colors.grey,
   },
   inputContainer: {
     paddingTop: 10,

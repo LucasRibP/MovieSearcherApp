@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { omdbApi } from "../../library/networking/omdbAPI";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import searchReducer from "../slices/searchSlice";
 
 export const store = configureStore({
   reducer: {
     [omdbApi.reducerPath]: omdbApi.reducer,
+    searchQuery: searchReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(omdbApi.middleware),

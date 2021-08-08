@@ -3,6 +3,9 @@ export default ptBr = {
     header: { title: "MovieSearcher" },
     searchField: { hint: "Que filme você quer encontrar?" },
     searchButton: { text: "Buscar" },
-    searchResults: { loading: "Pesquisando...", emptySearch: "Pesquise algo!" },
+    searchResults: {
+      emptySearch: "Pesquise algo!",
+      error: "Ocorreu um erro! ;-;",
+    },
   },
 };
