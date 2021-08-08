@@ -5,10 +5,10 @@ import { View, StyleSheet, Text, TextInput } from "react-native";
 import { Input, Button } from "react-native-elements";
 import ResultsList from "./ResultsList";
 import { useGetMoviesByNameQuery } from "../../library/networking/omdbAPI";
+import R from "../../res/R";
 
 export default SearchScreen = () => {
   const { data, error, isLoading } = useGetMoviesByNameQuery("dumbo");
-  console.log(data);
   return (
     <View style={styles.screenContainer}>
       <Input
@@ -20,7 +20,15 @@ export default SearchScreen = () => {
         containerStyle={styles.buttonContainer}
       />
       <View style={styles.searchResultsContainer}>
-        <ResultsList results={testData} />
+        {isLoading ? (
+          <View style={styles.searchResultsLoading}>
+            <Text style={styles.searchResultsLoadingText}>
+              {i18n.t("searchScreen.searchResults.loading")}
+            </Text>
+          </View>
+        ) : (
+          <ResultsList results={data["Search"]} />
+        )}
       </View>
     </View>
   );
@@ -29,6 +37,14 @@ export default SearchScreen = () => {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
+  },
+  searchResultsLoading: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+  },
+  searchResultsLoadingText: {
+    color: R.colors.grey,
   },
   inputContainer: {
     paddingTop: 10,
@@ -42,6 +58,7 @@ const styles = StyleSheet.create({
   },
   searchResultsContainer: {
     margin: 10,
+    flex: 1,
   },
 });
 
