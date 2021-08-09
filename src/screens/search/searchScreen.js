@@ -6,7 +6,6 @@ import ResultsList from "./ResultsList";
 import { useGetMoviesByNameQuery } from "../../library/networking/omdbAPI";
 import { setSearchQuery } from "../../redux/slices/searchSlice";
 
-import R from "../../res/R";
 import { useDispatch, useSelector } from "react-redux";
 import ResultsListMessage from "./ResultsListMessage";
 
@@ -14,26 +13,24 @@ export default SearchScreen = () => {
   const [currentQuery, setCurrentQuery] = useState("");
   const [nonEmptySearch, setNonEmptySearch] = useState(false);
 
+  const searchQuery = useSelector((state) => state.searchQuery.value);
+  const dispatch = useDispatch();
+
+  const { data, error, isLoading } = useGetMoviesByNameQuery(searchQuery);
+
   useEffect(() => {
-    if (searchQuery.payload != "" && typeof searchQuery !== "undefined") {
+    if (searchQuery != "" && typeof searchQuery !== "undefined") {
       setNonEmptySearch(true);
     } else {
       setNonEmptySearch(false);
     }
   }, [searchQuery]);
 
-  const searchQuery = useSelector((state) => state.searchQuery.value);
-  const dispatch = useDispatch();
-
-  const { data, error, isLoading } = useGetMoviesByNameQuery(
-    searchQuery.payload
-  );
-
   const SearchResults = !nonEmptySearch ? (
     <ResultsListMessage
       message={i18n.t("searchScreen.searchResults.emptySearch")}
     />
-  ) : data.Error ? (
+  ) : "Error" in data ? (
     <ResultsListMessage message={i18n.t("searchScreen.searchResults.error")} />
   ) : (
     <ResultsList results={data["Search"]} />
@@ -81,24 +78,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-const testData = [
-  {
-    Title: "Rickroll",
-    Year: "1987",
-    Poster:
-      "https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2021/02/rickroll-hd-1280x720.jpg",
-  },
-  {
-    Title: "Rickroll",
-    Year: "1987",
-    Poster:
-      "https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2021/02/rickroll-hd-1280x720.jpg",
-  },
-  {
-    Title: "Rickroll",
-    Year: "1987",
-    Poster:
-      "https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2021/02/rickroll-hd-1280x720.jpg",
-  },
-];

@@ -7,7 +7,7 @@ export const searchSlice = createSlice({
   },
   reducers: {
     setSearchQuery: (state, query) => {
-      state.value = query;
+      state.value = query.payload;
     },
   },
 });
