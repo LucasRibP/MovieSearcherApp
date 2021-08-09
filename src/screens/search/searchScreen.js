@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: "1%",
-    marginHorizontal: "7%",
-    width: "86%",
+    marginHorizontal: "4%",
+    width: "92%",
   },
   searchResultsContainer: {
     margin: 10,
