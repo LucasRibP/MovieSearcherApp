@@ -8,13 +8,7 @@ export default ResultsList = React.memo(
       <FlatList
         keyExtractor={(item, index) => index.toString()}
         data={results}
-        renderItem={(item) => (
-          <SearchResultsItem
-            posterUrl={item.item["Poster"]}
-            title={item.item["Title"]}
-            year={item.item["Year"]}
-          />
-        )}
+        renderItem={(item) => <SearchResultsItem item={item.item} />}
       />
     );
   },

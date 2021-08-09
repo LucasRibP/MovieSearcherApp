@@ -3,21 +3,24 @@ import { ListItem, Avatar } from "react-native-elements";
 import { StyleSheet } from "react-native";
 
 export default SearchResultItem = React.memo(
-  ({ posterUrl, title, year }) => {
+  ({ item }) => {
     return (
-      <ListItem containerStyle={styles.componentContainer}>
-        <Avatar source={{ uri: posterUrl }} />
+      <ListItem
+        containerStyle={styles.componentContainer}
+        onPress={() => console.log(item)}
+      >
+        <Avatar source={{ uri: item["Poster"] }} />
         <ListItem.Content>
-          <ListItem.Title>{title}</ListItem.Title>
-          <ListItem.Subtitle>{year}</ListItem.Subtitle>
+          <ListItem.Title>{item["Title"]}</ListItem.Title>
+          <ListItem.Subtitle>{item["Year"]}</ListItem.Subtitle>
         </ListItem.Content>
       </ListItem>
     );
   },
   (prev, next) => {
-    if (prev.posterUrl != next.posterUrl) return false;
-    if (prev.title != next.title) return false;
-    if (prev.year != next.year) return false;
+    if (prev.item["Poster"] != next.item["Poster"]) return false;
+    if (prev.item["Title"] != next.item["Title"]) return false;
+    if (prev.item["Year"] != next.item["Year"]) return false;
     return true;
   }
 );

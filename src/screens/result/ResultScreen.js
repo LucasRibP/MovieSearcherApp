@@ -6,5 +6,7 @@ export default ResultScreen = ({}) => {
 };
 
 const styles = StyleSheet.create({
-  screenContainer: {},
+  screenContainer: {
+    flex: 1,
+  },
 });
