@@ -5,6 +5,7 @@ import { StyleSheet, View } from "react-native";
 import SearchScreen from "./search/SearchScreen";
 import R from "res/R";
 import i18n from "i18n-js";
+import ResultScreen from "./result/ResultScreen";
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,17 @@ const MainScreenNav = () => {
               },
               headerTintColor: R.colors.white,
             }}
+          />
+          <Stack.Screen
+            name="Result"
+            component={ResultScreen}
+            options={({ route }) => ({
+              title: `${route.params.title} - ${route.params.year}`,
+              headerStyle: {
+                backgroundColor: R.colors.primary,
+              },
+              headerTintColor: R.colors.white,
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>
