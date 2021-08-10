@@ -1,13 +1,13 @@
 import React from "react";
 import { StyleSheet, View, ActivityIndicator } from "react-native";
-import { Image } from "react-native-elements";
+import { Image, Divider } from "react-native-elements";
 
 import { useGetMovieByIMDbIDQuery } from "library/networking/omdbAPI";
+import { ScrollView } from "react-native";
 
 export default ResultScreen = ({ route }) => {
   const { imdbID } = route.params;
   const { data, error, isLoading } = useGetMovieByIMDbIDQuery(imdbID);
-  console.log(data["Poster"]);
   return (
     <View style={styles.screenContainer}>
       <View style={styles.imageContainer}>
@@ -16,6 +16,10 @@ export default ResultScreen = ({ route }) => {
           PlaceholderContent={<ActivityIndicator />}
           style={styles.imageStyle}
         />
+        <Divider style={styles.divider} />
+        <ScrollView style={styles.resultInfoScrollView}>
+          <ResultInfo data={data} />
+        </ScrollView>
       </View>
     </View>
   );
@@ -30,10 +34,13 @@ const styles = StyleSheet.create({
     height: "40%",
   },
   imageStyle: {
-    marginHorizontal: "27.5%",
+    marginHorizontal: "20%",
     marginTop: "5%",
-    width: "45%",
-    height: "90%",
+    width: "60%",
+    height: "95%",
+  },
+  divider: {
+    marginVertical: "5.5%",
   },
 });
 
