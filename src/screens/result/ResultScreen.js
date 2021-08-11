@@ -24,7 +24,7 @@ export default ResultScreen = ({ route }) => {
       </View>
       <Divider style={styles.divider} />
       <ScrollView style={styles.resultInfoScrollView}>
-        <ResultInfo data={data} />
+        {isLoading ? <></> : <ResultInfo data={data} />}
       </ScrollView>
     </View>
   );
