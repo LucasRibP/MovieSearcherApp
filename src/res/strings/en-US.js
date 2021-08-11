@@ -8,4 +8,7 @@ export default enUs = {
       error: "An error has occured! ;-;",
     },
   },
+  resultScreen: {
+    releaseText: "Released on: ",
+  },
 };

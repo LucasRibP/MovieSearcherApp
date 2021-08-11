@@ -8,4 +8,7 @@ export default ptBr = {
       error: "Ocorreu um erro! ;-;",
     },
   },
+  resultScreen: {
+    releaseText: "Lançado no dia: ",
+  },
 };

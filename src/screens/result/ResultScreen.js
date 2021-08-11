@@ -45,9 +45,10 @@ const styles = StyleSheet.create({
     height: "95%",
   },
   divider: {
-    marginVertical: "5%",
+    marginTop: "5%",
   },
   resultInfoScrollView: {
+    marginTop: "2%",
     width: "100%",
     flex: 1,
   },
