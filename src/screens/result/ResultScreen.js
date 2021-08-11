@@ -1,9 +1,10 @@
 import React from "react";
-import { StyleSheet, View, ActivityIndicator } from "react-native";
+import { StyleSheet, View, ActivityIndicator, ScrollView } from "react-native";
 import { Image, Divider } from "react-native-elements";
 
+import ResultInfo from "./ResultInfo";
+
 import { useGetMovieByIMDbIDQuery } from "library/networking/omdbAPI";
-import { ScrollView } from "react-native";
 
 export default ResultScreen = ({ route }) => {
   const { imdbID } = route.params;
@@ -11,16 +12,20 @@ export default ResultScreen = ({ route }) => {
   return (
     <View style={styles.screenContainer}>
       <View style={styles.imageContainer}>
-        <Image
-          source={{ uri: data["Poster"] }}
-          PlaceholderContent={<ActivityIndicator />}
-          style={styles.imageStyle}
-        />
-        <Divider style={styles.divider} />
-        <ScrollView style={styles.resultInfoScrollView}>
-          <ResultInfo data={data} />
-        </ScrollView>
+        {isLoading ? (
+          <></>
+        ) : (
+          <Image
+            source={{ uri: data["Poster"] }}
+            PlaceholderContent={<ActivityIndicator />}
+            style={styles.imageStyle}
+          />
+        )}
       </View>
+      <Divider style={styles.divider} />
+      <ScrollView style={styles.resultInfoScrollView}>
+        <ResultInfo data={data} />
+      </ScrollView>
     </View>
   );
 };
@@ -40,7 +45,11 @@ const styles = StyleSheet.create({
     height: "95%",
   },
   divider: {
-    marginVertical: "5.5%",
+    marginVertical: "5%",
+  },
+  resultInfoScrollView: {
+    width: "100%",
+    flex: 1,
   },
 });
 
