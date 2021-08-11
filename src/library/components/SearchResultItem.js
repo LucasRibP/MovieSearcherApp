@@ -1,28 +1,29 @@
 import React from "react";
 import { ListItem, Avatar } from "react-native-elements";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 export default SearchResultItem = React.memo(
   ({ item }) => {
     const navigation = useNavigation();
     return (
-      <ListItem
-        containerStyle={styles.componentContainer}
-        onPress={() =>
-          navigation.navigate("Result", {
-            title: item["Title"],
-            year: item["Year"],
-            imdbID: item["imdbID"],
-          })
-        }
-      >
-        <Avatar source={{ uri: item["Poster"] }} />
-        <ListItem.Content>
-          <ListItem.Title>{item["Title"]}</ListItem.Title>
-          <ListItem.Subtitle>{item["Year"]}</ListItem.Subtitle>
-        </ListItem.Content>
-      </ListItem>
+      <View style={styles.componentContainer}>
+        <ListItem
+          onPress={() =>
+            navigation.navigate("Result", {
+              title: item["Title"],
+              year: item["Year"],
+              imdbID: item["imdbID"],
+            })
+          }
+        >
+          <Avatar source={{ uri: item["Poster"] }} />
+          <ListItem.Content>
+            <ListItem.Title>{item["Title"]}</ListItem.Title>
+            <ListItem.Subtitle>{item["Year"]}</ListItem.Subtitle>
+          </ListItem.Content>
+        </ListItem>
+      </View>
     );
   },
   (prev, next) => {
@@ -35,7 +36,8 @@ export default SearchResultItem = React.memo(
 
 const styles = StyleSheet.create({
   componentContainer: {
-    borderRadius: 5,
+    borderRadius: 7,
     marginBottom: 5,
+    overflow: "hidden",
   },
 });
