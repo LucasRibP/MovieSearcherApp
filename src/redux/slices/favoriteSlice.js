@@ -9,7 +9,7 @@ export const favoriteSlice = createSlice({
   reducers: {
     toggleFavorite: (state, id) => {
       if (state.value.includes(id.payload)) {
-        state.value = _.remove(state.value, (item) => item == id.payload);
+        _.remove(state.value, (item) => item == id.payload);
       } else {
         state.value.push(id.payload);
       }

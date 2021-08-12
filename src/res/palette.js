@@ -4,6 +4,7 @@ const palette = {
   baseStyle: {
     colors: {
       primary: colors.primary,
+      secondary: colors.secondary,
     },
   },
 };

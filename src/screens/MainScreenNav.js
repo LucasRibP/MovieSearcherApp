@@ -6,6 +6,7 @@ import SearchScreen from "./search/SearchScreen";
 import R from "res/R";
 import i18n from "i18n-js";
 import ResultScreen from "./result/ResultScreen";
+import FavoriteButton from "./result/FavoriteButton";
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,9 @@ const MainScreenNav = () => {
               title: `${route.params.title} - ${route.params.year}`,
               headerStyle: {
                 backgroundColor: R.colors.primary,
+              },
+              headerRight: () => {
+                return <FavoriteButton id={route.params.imdbID} />;
               },
               headerTintColor: R.colors.white,
             })}
