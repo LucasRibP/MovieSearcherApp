@@ -5,18 +5,26 @@ import { Image, Divider } from "react-native-elements";
 import ResultInfo from "./ResultInfo";
 
 import { useGetMovieByIMDbIDQuery } from "library/networking/omdbAPI";
+import { useSelector } from "react-redux";
 
 export default ResultScreen = ({ route }) => {
   const { imdbID } = route.params;
-  const { data, error, isLoading } = useGetMovieByIMDbIDQuery(imdbID);
+  const favorites = useSelector((state) => state.favorites.value);
+  const skip = Object.keys(favorites).includes(imdbID);
+
+  const { data, isLoading } = useGetMovieByIMDbIDQuery(imdbID, { skip });
+
+  const item = skip ? favorites[imdbID] : data;
+  const isThereLoading = skip ? false : isLoading;
+
   return (
     <View style={styles.screenContainer}>
       <View style={styles.imageContainer}>
-        {isLoading ? (
+        {isThereLoading ? (
           <></>
         ) : (
           <Image
-            source={{ uri: data["Poster"] }}
+            source={{ uri: item["Poster"] }}
             PlaceholderContent={<ActivityIndicator />}
             style={styles.imageStyle}
           />
@@ -24,7 +32,7 @@ export default ResultScreen = ({ route }) => {
       </View>
       <Divider style={styles.divider} />
       <ScrollView style={styles.resultInfoScrollView}>
-        {isLoading ? <></> : <ResultInfo data={data} />}
+        {isThereLoading ? <></> : <ResultInfo data={item} />}
       </ScrollView>
     </View>
   );

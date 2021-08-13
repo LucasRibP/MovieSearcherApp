@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 
 import { useSelector, useDispatch } from "react-redux";
 import { toggleFavorite } from "../../redux/slices/favoriteSlice";
-import { useGetMovieByIMDbIDQuery } from "../../library/networking/omdbAPI";
+import { useGetMovieByIMDbIDQuery } from "library/networking/omdbAPI";
 
 export default FavoriteButton = ({ id }) => {
   const favorites = useSelector((state) => state.favorites.value);
