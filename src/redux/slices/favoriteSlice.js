@@ -4,14 +4,14 @@ import _ from "lodash";
 export const favoriteSlice = createSlice({
   name: "favorites",
   initialState: {
-    value: [],
+    value: {},
   },
   reducers: {
-    toggleFavorite: (state, id) => {
-      if (state.value.includes(id.payload)) {
-        _.remove(state.value, (item) => item == id.payload);
+    toggleFavorite: (state, item) => {
+      if (Object.keys(state.value).includes(item.payload.imdbID)) {
+        delete state.value[item.payload.imdbID];
       } else {
-        state.value.push(id.payload);
+        state.value[item.payload.imdbID] = item.payload;
       }
     },
   },
