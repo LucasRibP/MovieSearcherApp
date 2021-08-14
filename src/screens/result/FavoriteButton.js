@@ -14,11 +14,11 @@ export default FavoriteButton = ({ id }) => {
 
   // It won't make 2 calls, because RTK Query is cacheing the result of this
   // API call, this happens as the page required to load this button loads.
-  const { data, isError, isLoading } = useGetMovieByIMDbIDQuery(imdbID, {
+  const { data, isError, isLoading } = useGetMovieByIMDbIDQuery(id, {
     skip: active,
   });
 
-  const item = active ? favorites[imdbID] : data;
+  const item = active ? favorites[id] : data;
   const isThereError = active ? false : isError;
   const isThereLoading = active ? false : isLoading;
 
