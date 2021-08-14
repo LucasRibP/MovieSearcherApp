@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import { useDispatch } from "react-redux";
+import { getFavoritesFromPhone } from "../redux/slices/favoriteSlice";
+
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { StyleSheet, View } from "react-native";
+
 import SearchScreen from "./search/SearchScreen";
-import R from "res/R";
-import i18n from "i18n-js";
 import ResultScreen from "./result/ResultScreen";
 import FavoriteButton from "./result/FavoriteButton";
+
+import R from "res/R";
+import i18n from "i18n-js";
 
 const Stack = createStackNavigator();
 
 const MainScreenNav = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getFavoritesFromPhone);
+  }, []);
+
   return (
     <View style={styles.componentContainer}>
       <NavigationContainer>
