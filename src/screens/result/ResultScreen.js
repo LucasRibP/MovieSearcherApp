@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, ActivityIndicator, ScrollView } from "react-native";
-import { Image, Divider } from "react-native-elements";
+import {
+  StyleSheet,
+  View,
+  ActivityIndicator,
+  ScrollView,
+  Share,
+} from "react-native";
+import { Image, Divider, FAB } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import R from "res/R";
 
 import ResultInfo from "./ResultInfo";
 
@@ -42,6 +50,13 @@ export default ResultScreen = ({ route }) => {
       <ScrollView style={styles.resultInfoScrollView}>
         {isThereLoading ? <></> : <ResultInfo data={item} />}
       </ScrollView>
+      <FAB
+        placement="right"
+        icon={<Icon name="share" size={22} color={R.colors.white} solid />}
+        onPress={() =>
+          Share.share({ message: `https://www.imdb.com/title/${imdbID}/` })
+        }
+      />
     </View>
   );
 };
