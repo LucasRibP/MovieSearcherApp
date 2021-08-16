@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, ActivityIndicator, ScrollView } from "react-native";
 import { Image, Divider } from "react-native-elements";
 
@@ -6,16 +6,24 @@ import ResultInfo from "./ResultInfo";
 
 import { useGetMovieByIMDbIDQuery } from "library/networking/omdbAPI";
 import { useSelector } from "react-redux";
+import _ from "lodash";
 
 export default ResultScreen = ({ route }) => {
   const { imdbID } = route.params;
+  const [item, setItem] = useState({});
   const favorites = useSelector((state) => state.favorites.value);
-  const skip = Object.keys(favorites).includes(imdbID);
+  const skip = Object.keys(favorites).includes(imdbID) || !_.isEmpty(item);
 
   const { data, isLoading } = useGetMovieByIMDbIDQuery(imdbID, { skip });
 
-  const item = skip ? favorites[imdbID] : data;
+  const cur_item = skip ? favorites[imdbID] : data;
   const isThereLoading = skip ? false : isLoading;
+
+  useEffect(() => {
+    if (!isThereLoading) {
+      setItem(cur_item);
+    }
+  }, [data]);
 
   return (
     <View style={styles.screenContainer}>
