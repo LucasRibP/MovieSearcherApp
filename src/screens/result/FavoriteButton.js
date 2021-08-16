@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -6,6 +6,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleFavorite } from "../../redux/slices/favoriteSlice";
 import { useGetMovieByIMDbIDQuery } from "library/networking/omdbAPI";
+import { storeFavorites } from "../../library/utils/storeCacheLoader";
 
 export default FavoriteButton = ({ id }) => {
   const favorites = useSelector((state) => state.favorites.value);
@@ -17,6 +18,10 @@ export default FavoriteButton = ({ id }) => {
   const { data, isError, isLoading } = useGetMovieByIMDbIDQuery(id, {
     skip: active,
   });
+
+  useEffect(() => {
+    storeFavorites(favorites);
+  }, [favorites]);
 
   const item = active ? favorites[id] : data;
   const isThereError = active ? false : isError;

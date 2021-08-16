@@ -9,7 +9,7 @@ export const storeFavorites = async (data) => {
   }
 };
 
-export const retrieveFavorites = async (data) => {
+export const retrieveFavorites = async () => {
   try {
     const jsonData = await AsyncStorage.getItem("favorites");
     return jsonData != null ? JSON.parse(jsonData) : null;
