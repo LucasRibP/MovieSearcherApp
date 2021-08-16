@@ -11,4 +11,9 @@ export default enUs = {
   resultScreen: {
     releaseText: "Released on: ",
   },
+  favoritesScreen: {
+    header: {
+      title: "Favorites",
+    },
+  },
 };

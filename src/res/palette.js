@@ -1,11 +1,15 @@
 import colors from "./colors";
 
 const palette = {
-  baseStyle: {
+  base: {
     colors: {
       primary: colors.primary,
       secondary: colors.secondary,
     },
+  },
+  rightHeaderButton: {
+    marginRight: 8,
+    borderRadius: 60,
   },
 };
 

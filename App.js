@@ -20,7 +20,7 @@ i18n.defaultLocale = "en";
 
 export default function App() {
   return (
-    <ThemeProvider theme={R.palette.baseStyle}>
+    <ThemeProvider theme={R.palette.base}>
       <Provider store={store}>
         <View style={styles.root}>
           <MainScreenNav />

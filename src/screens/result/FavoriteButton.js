@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import R from "res/R";
 
 import { useSelector, useDispatch } from "react-redux";
 import { toggleFavorite } from "../../redux/slices/favoriteSlice";
@@ -39,7 +40,9 @@ export default FavoriteButton = ({ id }) => {
 
   return (
     <Button
-      icon={<Icon name="star" size={22} color="white" solid={active} />}
+      icon={
+        <Icon name="star" size={22} color={R.colors.white} solid={active} />
+      }
       onPress={saveFavorite}
       containerStyle={styles.componentContainer}
     />
@@ -48,7 +51,6 @@ export default FavoriteButton = ({ id }) => {
 
 const styles = StyleSheet.create({
   componentContainer: {
-    marginRight: 8,
-    borderRadius: 60,
+    ...R.palette.rightHeaderButton,
   },
 });

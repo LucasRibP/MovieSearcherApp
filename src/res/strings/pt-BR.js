@@ -11,4 +11,9 @@ export default ptBr = {
   resultScreen: {
     releaseText: "Lançado no dia: ",
   },
+  favoritesScreen: {
+    header: {
+      title: "Favoritos",
+    },
+  },
 };

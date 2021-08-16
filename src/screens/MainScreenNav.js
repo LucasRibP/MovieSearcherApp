@@ -12,6 +12,8 @@ import FavoriteButton from "./result/FavoriteButton";
 
 import R from "res/R";
 import i18n from "i18n-js";
+import FavoritesPageButton from "./search/FavoritesPageButton";
+import FavoritesScreen from "./favorites/FavoritesScreen";
 
 const Stack = createStackNavigator();
 
@@ -29,13 +31,16 @@ const MainScreenNav = () => {
           <Stack.Screen
             name="Search"
             component={SearchScreen}
-            options={{
+            options={({}) => ({
               title: i18n.t("searchScreen.header.title"),
               headerStyle: {
                 backgroundColor: R.colors.primary,
               },
+              headerRight: () => {
+                return <FavoritesPageButton />;
+              },
               headerTintColor: R.colors.white,
-            }}
+            })}
           />
           <Stack.Screen
             name="Result"
@@ -50,6 +55,17 @@ const MainScreenNav = () => {
               },
               headerTintColor: R.colors.white,
             })}
+          />
+          <Stack.Screen
+            name="Favorites"
+            component={FavoritesScreen}
+            options={{
+              title: i18n.t("favoritesScreen.header.title"),
+              headerStyle: {
+                backgroundColor: R.colors.primary,
+              },
+              headerTintColor: R.colors.white,
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
