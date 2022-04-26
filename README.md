@@ -1,10 +1,11 @@
 Movie Search App
 A React Native project with the intent of practicing the following skills:
 
-- API Communication
-- Naivigation
-- Local Persistence
-- Redux
+- [x] API Communication
+- [x] Naivigation
+- [x] Local Persistence
+- [x] Redux
+- [x] Internationalization
 
 What it does?
 The app offers a search bar, where the user can search for a movie title they want to find.
